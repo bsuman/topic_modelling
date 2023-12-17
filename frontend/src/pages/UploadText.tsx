@@ -33,8 +33,9 @@ const UploadText: React.FC<UploadTextProps> = ({ apiUrl }) => {
 
       setIsUploading(true);
 
+      console.log("upload called")
       // Perform the upload request
-      const response = await axios.post(apiUrl, { text }, { cancelToken: source.token });
+      const response = await axios.post(apiUrl, { text:text, document_id:1 }, { cancelToken: source.token });
 
       console.log('Upload successful:', response.data);
     } catch (error: any) {

@@ -7,7 +7,7 @@ function App() {
     <div className="flex flex-col items-center w-full h-full">
 
 
-      <UploadText apiUrl={'www.google.com'} />
+      <UploadText apiUrl={'http://localhost:5000/analyze'} />
     </div>
   )
 }
