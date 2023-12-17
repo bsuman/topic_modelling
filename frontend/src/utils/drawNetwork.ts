@@ -1,5 +1,4 @@
 import { Link, Node } from '../test-data/data';
-import { SimulationNodeDatum } from 'd3-force';
 
 export const RADIUS = 10;
 
@@ -8,11 +7,12 @@ export const drawNetwork = (context: CanvasRenderingContext2D, width: number, he
 
   // Draw the links first
   links.forEach((link: Link) => {
+    // check if the link is already a proper object with coordinates to draw to
     if (
-      instanceOfSimulationNodeDatum(link.source) &&
+      typeof link.source === 'object' &&
       typeof link.source.x === 'number' &&
       typeof link.source.y === 'number' &&
-      instanceOfSimulationNodeDatum(link.target) &&
+      typeof link.target === 'object' &&
       typeof link.target.x === 'number' &&
       typeof link.target.y === 'number'
     ) {
@@ -36,11 +36,3 @@ export const drawNetwork = (context: CanvasRenderingContext2D, width: number, he
     context.fill();
   });
 };
-
-/**
- * check if Link is the correct object to draw lines from one node to another
- * @param object
- */
-function instanceOfSimulationNodeDatum(object: any): object is SimulationNodeDatum {
-  return 'member' in object;
-}
