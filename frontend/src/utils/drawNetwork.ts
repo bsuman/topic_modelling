@@ -7,6 +7,9 @@ export const drawNetwork = (context: CanvasRenderingContext2D, width: number, he
 
   // Draw the links first
   links.forEach((link: Link) => {
+    // Set a different width depending on the link strength
+    context.lineWidth = link.strength;
+
     // check if the link is already a proper object with coordinates to draw to
     if (
       typeof link.source === 'object' &&
@@ -31,7 +34,7 @@ export const drawNetwork = (context: CanvasRenderingContext2D, width: number, he
 
     context.beginPath();
     context.moveTo(node.x + RADIUS, node.y);
-    context.arc(node.x, node.y, RADIUS, 0, 2 * Math.PI);
+    context.arc(node.x, node.y, RADIUS + RADIUS * (node.occurrences / 3), 0, 2 * Math.PI);
     context.fillStyle = '#ff69b4';
     context.fill();
   });

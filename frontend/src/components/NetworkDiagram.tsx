@@ -29,6 +29,9 @@ export const NetworkDiagram = ({
     if (!context) {
       return;
     }
+    console.log('nodes 123', nodes);
+    console.log('links', links);
+
 
     // run d3-force to find the position of nodes on the canvas
     d3.forceSimulation(nodes)
@@ -37,6 +40,8 @@ export const NetworkDiagram = ({
       .force(
         'link',
         d3.forceLink<Node, Link>(links).id((d) => d.id)
+          // set the distance between the nodes
+          .distance(200)
       )
       .force('collide', d3.forceCollide().radius(RADIUS))
       .force('charge', d3.forceManyBody())
